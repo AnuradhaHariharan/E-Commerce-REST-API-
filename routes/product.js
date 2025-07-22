@@ -7,16 +7,21 @@ const {
   getProductById,
   createProduct,
   updateProduct,
-  deleteProduct
+  deleteProduct,
+  getFilteredProducts
 } = require('../controllers/productController');
 
 // Public Routes
+router.get('/filter',getFilteredProducts);
 router.get('/', getAllProducts);
 router.get('/:id', getProductById);
+
 
 // Protected Routes
 router.post('/', authMiddleware, upload.single('image'), createProduct);
 router.put('/:id', authMiddleware, updateProduct);
 router.delete('/:id', authMiddleware, deleteProduct);
+
+
 
 module.exports = router;
